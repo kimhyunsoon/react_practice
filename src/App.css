@@ -27,6 +27,13 @@
 .App-link {
   color: #61dafb;
 }
+.jumbotron {
+  background-image: url('./background.jpg');
+  background-size: cover;
+  color:#fff;
+  text-align: center;
+  padding:100px 20px;
+}
 
 @keyframes App-logo-spin {
   from {
