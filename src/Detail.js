@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import './Detail.scss';
@@ -13,10 +13,22 @@ let Boxh4 = styled.h4`
 `
 
 function Detail(p){
-  var {idx} = useParams();
-  var history = useHistory();
-  var thisShoe = p.shoes.find(shoe => shoe.id == idx);
+  useEffect(()=>{
+    let timer = setTimeout(()=>{
+      alertToggleCn(false)
+    },2000)
 
+    return function DetailUnmount(){
+      console.log('언마운트')
+    }
+  });
+
+
+  let {idx} = useParams();
+  let history = useHistory();
+  let thisShoe = p.shoes.find(shoe => shoe.id == idx);
+
+  let [alertToggle, alertToggleCn] = useState(true);
   return(
     <div className="container">
 
@@ -24,9 +36,12 @@ function Detail(p){
         <Boxh4 color="#000">Detail</Boxh4>
       </Boxdiv>
 
-      <div className="myAlert2">
-        <p>재고가 얼마 남지 않았습니다.</p>
-      </div>
+      {
+        alertToggle
+        ?<div className="myAlert2"><p>재고가 얼마 남지 않았습니다.</p></div>
+        :null
+      }
+      
 
       <div className="row">
       <div className="col-md-6">

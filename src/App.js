@@ -21,7 +21,6 @@ function App() {
         return a.title > b.title ? -1 : a.title > b.title ? 1 : 0;
       });
     }else if(order == 'asc'){
-      console.log('zzz')
       newArr.sort(function (a, b) {
         return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
       });
@@ -38,8 +37,9 @@ function App() {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto">
-							<Nav.Link> <Link to='/'>Home</Link> </Nav.Link>
-							<Nav.Link> <Link to='/detail'>Detail</Link>  </Nav.Link>
+              {/* Nav.Link 안에 Link 컴포넌트 -> a태그 안에 a태그 워닝 뜸, as 속성으로 해결함 */}
+              <Nav.Link as={Link} to='/'>Home</Nav.Link> 
+							<Nav.Link as={Link} to='/detail'>Detail</Nav.Link>
 							<NavDropdown title="Dropdown" id="basic-nav-dropdown">
 								<NavDropdown.Item >Action</NavDropdown.Item>
 								<NavDropdown.Item >Another action</NavDropdown.Item>
