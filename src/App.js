@@ -12,6 +12,23 @@ function App() {
 
 	let [shoes, shoesCng] = useState(shoesData);
 
+  
+  
+  function shoesSort(order){
+    var newArr = [...shoes]
+    if(order=='desc'){
+      newArr.sort(function (a, b) {
+        return a.title > b.title ? -1 : a.title > b.title ? 1 : 0;
+      });
+    }else if(order == 'asc'){
+      console.log('zzz')
+      newArr.sort(function (a, b) {
+        return a.title < b.title ? -1 : a.title > b.title ? 1 : 0;
+      });
+    
+    }
+    shoesCng(newArr)
+  }
 	return (
 		<div className="App">
 
@@ -56,11 +73,17 @@ function App() {
             <div className="row">
               {
                 shoes.map((row, idx)=>{
-                  return <Shoes shoes={row} key={idx}/>
+                  return <Shoes shoes={row} key={row.id}/>
                 })
               }
             </div>
           </div>
+          <button onClick={()=>{
+            shoesSort('asc')
+          }}>오름순</button>
+          <button onClick={()=>{
+            shoesSort('desc')
+          }}>내림순</button>
         </Route>
 
         {/* :(파라미터) 모든 문자경로 */}
