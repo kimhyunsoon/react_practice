@@ -1,14 +1,28 @@
 import React, { useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
+import styled from "styled-components";
+
+let Boxdiv = styled.div`
+  padding : 20px;
+`;
+
+let Boxh4 = styled.h4`
+  font-size : 25px;
+  color:${ props => props.color };
+`
 
 function Detail(p){
   var {idx} = useParams();
   var history = useHistory();
   var thisShoe = p.shoes.find(shoe => shoe.id == idx);
 
-  console.log(thisShoe)
   return(
     <div className="container">
+
+      <Boxdiv>
+        <Boxh4 color="red">박스입니당</Boxh4>
+      </Boxdiv>
+
       <div className="row">
       <div className="col-md-6">
         <img src={"https://codingapple1.github.io/shop/shoes"+(Number(idx)+1)+".jpg"} width="100%"/>
