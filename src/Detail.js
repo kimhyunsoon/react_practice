@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
+import './Detail.scss';
 
 let Boxdiv = styled.div`
   padding : 20px;
@@ -20,8 +21,12 @@ function Detail(p){
     <div className="container">
 
       <Boxdiv>
-        <Boxh4 color="red">박스입니당</Boxh4>
+        <Boxh4 color="#000">Detail</Boxh4>
       </Boxdiv>
+
+      <div className="myAlert2">
+        <p>재고가 얼마 남지 않았습니다.</p>
+      </div>
 
       <div className="row">
       <div className="col-md-6">

@@ -1,0 +1,25 @@
+
+.myAlert{
+  background-color: #eee;
+  padding:20px;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 100%;
+  margin:auto;
+
+  p{
+    margin-bottom:0px;
+  }
+}
+
+@mixin sassFn(){ // 함수형으로 선언_include로 가져옴
+  font-size: 35px;
+}
+
+.myAlert2{
+  @extend .myAlert; // 기존 선택자에서 상속
+  @include sassFn();
+  background-color: #ffe591;
+}
+
+
