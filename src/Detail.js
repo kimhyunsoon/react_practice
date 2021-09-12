@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react"
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -14,6 +15,7 @@ let Boxh4 = styled.h4`
 
 function Detail(p){
   useEffect(()=>{
+
     let timer = setTimeout(()=>{
       alertToggleCn(false)
     },2000)
@@ -21,7 +23,9 @@ function Detail(p){
     return function DetailUnmount(){
       console.log('언마운트')
     }
-  });
+
+  },[]);
+  // ,[]를 추가하면 업데이트시에는 실행하지 않음, 첫 로드에만 실행함
 
 
   let {idx} = useParams();

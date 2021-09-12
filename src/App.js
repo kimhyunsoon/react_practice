@@ -7,12 +7,13 @@ import { useState } from 'react';
 import {shoesData} from './data.js'
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './Detail.js'
+import axios from 'axios';
 
 function App() {
 
 	let [shoes, shoesCng] = useState(shoesData);
 
-  
+  let [loading, loadgingCng] = useState(false);
   
   function shoesSort(order){
     var newArr = [...shoes]
@@ -78,6 +79,38 @@ function App() {
               }
             </div>
           </div>
+
+          {/* axios 비동기통신 */}
+          <div style={{marginBottom:'10px'}}>
+            <button onClick={()=>{
+
+              loadgingCng(true)
+
+              axios.get('https://codingapple1.github.io/shop/data2.json')
+              .then((r)=>{
+
+                loadgingCng(false)
+                var newArr = [...shoes, ...r.data];
+                shoesCng(newArr)
+
+              })
+              .catch((e)=>{
+
+                console.error(e)
+                loadgingCng(false)
+
+              })
+              // post 는 axios.past('url', {json 정보}).then();
+            }} className="btn btn-primary">더보기</button>
+          </div>
+
+          {
+            loading
+            ? <p>로딩중</p>
+            : null
+          }
+          
+          
           <button onClick={()=>{
             shoesSort('asc')
           }}>오름순</button>
