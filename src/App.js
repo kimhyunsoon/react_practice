@@ -13,6 +13,8 @@ function App() {
 
 	let [shoes, shoesCng] = useState(shoesData);
 
+  let [shoesStock, shoesStockCng] = useState([10,11,12]);
+
   let [loading, loadgingCng] = useState(false);
   
   function shoesSort(order){
@@ -121,7 +123,7 @@ function App() {
 
         {/* :(파라미터) 모든 문자경로 */}
         <Route exact path="/detail/:idx">
-          <Detail shoes={shoes}/>
+          <Detail shoes={shoes} stock={shoesStock} stockCng={shoesStockCng}/>
         </Route>
 
         <Route exact path="/:id">

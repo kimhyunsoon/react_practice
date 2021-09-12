@@ -55,7 +55,15 @@ function Detail(p){
         <h4 className="pt-5">{thisShoe.title}</h4>
         <p>{thisShoe.content}</p>
         <p>{thisShoe.price} 원</p>
-        <button className="btn btn-danger" style={{'marginRight':'10px'}}>주문하기</button>
+        
+        <Stock stock={p.stock} id={idx}/>
+
+        <button onClick={()=>{
+          let newArr = [...p.stock]
+          newArr[idx] = newArr[idx] - 1;
+          p.stockCng(newArr);
+        }} className="btn btn-danger" style={{'marginRight':'10px'}}>주문하기</button>
+
         <button className="btn btn-danger" onClick={()=>{
           // history.push('/'); // 해당 페이지로 이동
           history.goBack(); // 이전 페이지로 이동
@@ -65,5 +73,9 @@ function Detail(p){
     </div> 
   )
 }
-
+function Stock(p){
+  return (
+    <p>재고 : {p.stock[p.id]}</p>
+  )
+}
 export default Detail;
