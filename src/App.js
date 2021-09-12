@@ -3,11 +3,13 @@
 import logo from './logo.svg';
 import './App.css';
 import {Navbar, Container, Nav,NavDropdown, Button} from 'react-bootstrap'
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {shoesData} from './data.js'
 import { Link, Route, Switch } from 'react-router-dom';
 import Detail from './Detail.js'
 import axios from 'axios';
+
+let StockContext = React.createContext();
 
 function App() {
 
@@ -73,6 +75,8 @@ function App() {
           </div>
           <div className="container">
 
+            <StockContext.Provider value={shoesStock}>
+
             <div className="row">
               {
                 shoes.map((row, idx)=>{
@@ -80,6 +84,9 @@ function App() {
                 })
               }
             </div>
+
+            </StockContext.Provider>
+
           </div>
 
           {/* axios 비동기통신 */}
@@ -138,14 +145,25 @@ function App() {
 }
 
 function Shoes(props){
+
+  let stock = useContext(StockContext);
 	return(
 		<Link to={"/detail/" + props.shoes.id} className="col-md-4">
 			<img src={'https://codingapple1.github.io/shop/shoes'+ (props.shoes.id + 1) +'.jpg'} width="100%" />
 			<h4>{props.shoes.title}</h4>
 			<p>{props.shoes.content} & {props.shoes.price}</p>
+      <p>재고 : {stock[props.shoes.id]}</p>
+      <Test></Test>
 		</Link>  
 	)
 
+}
+
+function Test(){
+  let stock = useContext(StockContext);
+  return (
+    <p>재고 : {stock}</p>
+  )
 }
 
 export default App;
